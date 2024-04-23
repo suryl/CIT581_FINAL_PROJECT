@@ -148,25 +148,6 @@
         </div>
     </footer>
     
-    <script>
-        function initMap() {
-          // Coordinates for the map center
-          var center = { lat: 12.898725116470926, lng: 77.65275327554157 };
-      
-          // Create a map object and specify the DOM element for display.
-          var map = new google.maps.Map(document.getElementById('map'), {
-            center: center,
-            zoom: 15 // Adjust zoom level as needed
-          });
-      
-          // Add a marker at the specified location
-          var marker = new google.maps.Marker({
-            position: center,
-            map: map,
-            title: 'Royal East, Bengaluru'
-          });
-        }
-      </script>
 
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDwVN9S06zwOZdqyBcXenenuGxvRWIByog&callback=initMap" async defer></script>
     <script src="/static/script.js"></script>
