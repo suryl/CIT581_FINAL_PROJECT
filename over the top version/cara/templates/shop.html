@@ -1,0 +1,132 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <title>Ecom HomePage</title>
+    <link rel="stylesheet" href="{% static 'styles.css' %}">
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" />
+
+</head>
+<body>
+    <section id="header">
+        <a href="index"><img src="{% static 'img/logo.png' %}" class="logo" alt=""></a>   
+        <div>
+            <ul id="navbar">
+                <li><a href="index">Home</a></li>
+                <li><a class="active"  href="shop">Shop</a></li>
+                <li><a href="contact">Contact Us</a></li>
+                {% if user.is_authenticated %}
+                    <!-- If the user is authenticated, display personalized greeting -->
+                    <li><a>Hi, {{ user.username }}</a></li>
+                    <li><a href="{% url 'logout' %}" id='logout-link' onclick = "console.log('Logout clicked');" >Logout</a></li>
+                    <li id="lg-bag"><a href="cart"><i class="fas fa-cart-arrow-down"></i></a></li>
+                {% else %}
+                    <!-- If the user is not authenticated, display login option -->
+                    <li><a href="{% url 'login' %}">Login</a></li>
+                {% endif %}
+                
+                <a href="#" id="close"><i class="far fa-times"></i></a>
+            </ul>
+        </div>
+        <div id="mobile">
+            {% if user.is_authenticated %}
+                <!-- Cart link for authenticated users in mobile view -->
+                <a href="cart"><i class="far fa-shopping-bag"></i></a>
+            {% endif %}
+            <i id="bar" class="fas fa-outdent"></i>
+        </div>
+    </section>
+    <section id="page-header">
+        <h2>#STAYHome</h2>
+        <p>Save more with coupons and gift cards</p>
+    </section>
+
+    <section id="product1" class="section-p1">
+        <p>Summer Collections & New Mordern Designs</p>
+        <div class="pro-container"> 
+            {% for product in products %}
+            <div class="pro"  onclick="window.location.href='single-product'">
+                
+                <img src="{% static 'img/products/f1.jpg' %}" alt="">
+                <div class="des">
+                    <span>{{product.name}}</span>
+                    <h5>{{product.description}}</h5>
+                    <div class="star">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <h4>{{product.price}}</h4>
+                </div>
+                <a href="#"><i class="fal fa-shopping-cart cart"></i></a>
+                
+            </div>
+            {% endfor %}
+        </div>
+    </section>
+
+
+    <section id="pagination">
+        <a href="#">1</a>
+        <a href="#">2</a>
+        <a href="#"><i class="fal fa-long-arrow-alt-right"></i></a> 
+    </section>
+    <footer class="section-p1">
+        <div class="col">
+            <img src="{% static 'img/logo.png' %}" alt="">
+            <h4>Contact</h4>
+            <p><strong> Address:</strong> 1706 N 13th St, Lafayette, IN 47904</p>
+            <p><strong> Phone:</strong> +91 7538860269</p>
+            <p><strong>Hours:</strong> 10:00 - 18:00, Mon - Sat</p>
+            <div class="follow">
+                <h4>Follow us</h4>
+                <div class="icon">
+                    <i class="fab fa-facebook-f"></i>
+                    <i class="fab fa-twitter"></i>
+                    <i class="fab fa-instagram"></i>
+                    <i class="fab fa-pinterest-p"></i>
+                    <i class="fab fa-youtube"></i>
+                </div>
+            </div>
+        </div>
+        <div class="col">
+            <h4>About</h4>
+            <a href="#">About Us</a>
+            <a href="#">Delivery Instruction</a>
+            <a href="#">Privacy Policy</a>
+            <a href="#">Terms & Conditions</a>
+            <a href="#">Contact Us</a>
+        </div>
+        <div class="col">
+            <h4>My Account</h4>
+            <a href="login">Sign In</a>
+            <a href="cart">View Cart</a>
+            <a href="#">My Wishlist</a>
+            <a href="#">Track my Order</a>
+            <a href="#">Support</a>
+        </div>
+        <div class="col install">
+            <h4>Install App</h4>
+            <p>From App Store or Google Play</p>
+            <div class="row">
+                <img src="{% static 'img/pay/app.jpg' %}" alt="">
+                <img src="{% static 'img/pay/play.jpg' %}" alt="">
+            </div>
+            <p>Secured Gateways</p>
+            <img src="{% static 'img/pay/pay.png' %}" alt=""> 
+            <div class="copyright">
+                <p>&#169; 2024, Ecommerce - Cara Project Phase I</p
+
+>
+            </div>
+        </div>
+    </footer>
+
+    <script src="/static/script.js"></script>
+</body>
+</html>
